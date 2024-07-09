@@ -74,7 +74,7 @@ pub fn build(b: *std.Build) void {
     const run_step = b.step("run", "Run the app");
     run_step.dependOn(&run_cmd.step);
 
-    const kraft_clean_cmd = b.addSystemCommand(&[_][]const u8{
+    var kraft_clean_cmd = b.addSystemCommand(&[_][]const u8{
         "kraft",
         "clean",
         "--plat",
@@ -82,6 +82,8 @@ pub fn build(b: *std.Build) void {
         "--arch",
         "x86_64",
     });
+    kraft_clean_cmd.stdio = .{ .check = .{} }; // kraft clean has some weird exit code behavior
+    kraft_clean_cmd.has_side_effects = true;
     const clean_step = b.step("clean", "Clean the unikraft build");
     clean_step.dependOn(&kraft_clean_cmd.step);
 
