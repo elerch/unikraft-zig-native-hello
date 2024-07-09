@@ -1,2 +1,4 @@
 .zig-cache
 zig-out
+.config.helloworld_qemu-x86_64.old
+.unikraft/
