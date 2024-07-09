@@ -1,0 +1,5 @@
+$(eval $(call addlib,apphelloworld))
+
+APPHELLOWORLD_SRCS-y += $(APPHELLOWORLD_BASE)/helloworld.c
+APPHELLOWORLD_SRCS-y += $(APPHELLOWORLD_BASE)/undefined.c
+UK_ALIBS-y += $(APPHELLOWORLD_BASE)/libziggy.a
