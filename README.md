@@ -13,12 +13,31 @@ aarch64. Install the following:
 * [Kraftkit](https://unikraft.org/docs/cli/install)
 
 Then run `zig build run` and everything will compile and run. The zig source
-code is all in the `ziggy` directory
+code is all in the `ziggy` directory. This is all prototype level code at this
+point.
 
+undefined.c
+-----------
 
+This file aims to fill in all the undefined symbols that are referenced when
+a zig project links libC (necessary for unikraft kernel development). However,
+this is very incomplete. The `.config.hellowworld_qemu-x86_64` file, usually
+managed by the invocation of the TUI started by `kraft menu`, will add/remove
+features that result in various libc symbols being implemented. A few
+`#ifdef` statements exist currently, but even the few that are in there aren't
+quite right...this file is mostly a "hack around until it works" effort.
+
+Knowing that this is an initial effort, care was put into making sure that
+when a symbol is actually **used** at runtime, the unikernel will crash after
+posting a message indicating the specific function call that was involved. This
+is designed to either a) correct the configuration using `kraft menu` or
+b) provide an implementation directly in `undefined.c`. In some cases, I prefer
+the implementation in `undefined.c`, most specifically the `write` function,
+which will output stderr messages in red.
 
 Notes
 -----
+
 
 The build script basically runs these commands:
 
