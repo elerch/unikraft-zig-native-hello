@@ -16,6 +16,15 @@ Then run `zig build run` and everything will compile and run. The zig source
 code is all in the `ziggy` directory. This is all prototype level code at this
 point.
 
+Reproducibility
+---------------
+
+This build is not reproducible at the moment. The problem is that we need v0.17.0
+or higher (this may be an issue with QEMU installed version, so YMMV). Kraftfile
+is designed to pin to a specific version, but as of this writing, versions of
+unikraft core post 0.16.1 are not listed in https://manifests.kraftkit.sh/unikraft.yaml,
+and as a result cannot be used, so we are forced to use "stable" as the version.
+
 undefined.c
 -----------
 
