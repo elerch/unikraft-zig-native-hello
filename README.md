@@ -1,14 +1,29 @@
 Native Unikraft Microkernel Build for Zig libraries
 ===================================================
 
-This is an example repository, due to be cleaned up. For now, install Kraftkit
-and zig and build it this way:
+
+Building
+--------
+
+Everything assumes Linux on x86_64, though some trivial changes should allow
+aarch64. Install the following:
+
+* [Zig](https://ziglang.org). Versions 0.12.0 and 0.13.0 should work
+* [QEMU](https://www.qemu.org/download/#linux)
+* [Kraftkit](https://unikraft.org/docs/cli/install)
+
+Then run `zig build run` and everything will compile and run. The zig source
+code is all in the `ziggy` directory
+
+
+
+Notes
+-----
+
+The build script basically runs these commands:
 
 ```sh
-(cd ziggy && zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-linux-gnu.2.13 -Dcpu=baseline) && cp ziggy/zig-out/lib/libziggy.a . &&  kraft build --plat qemu --arch x86_64 --log-level debug --log-type basic && kraft run --plat qemu --arch x86_64
+(cd ziggy && zig build)
+LIBZIGGY=$(pwd)/ziggy/zig-out/lib/libziggy.a kraft build --plat qemu --arch x86_64 --log-level debug --log-type basic
+kraft run --plat qemu --arch x86_64
 ```
-
-Only works on Linux, with QEMU (install that too!) and Zig 0.13.0 (though probably
-works on 0.12.0 as well).
-
-More to follow

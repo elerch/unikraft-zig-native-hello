@@ -1,8 +1,8 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Unikraft/0.17.0~8838cfd Configuration
+# Unikraft/0.17.0~e7be641 Configuration
 #
-CONFIG_UK_FULLVERSION="0.17.0~8838cfd"
+CONFIG_UK_FULLVERSION="0.17.0~e7be641"
 CONFIG_UK_CODENAME="Calypso"
 CONFIG_UK_ARCH="x86_64"
 CONFIG_HOST_ARCH="x86_64"

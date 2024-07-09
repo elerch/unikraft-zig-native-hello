@@ -2,4 +2,5 @@ $(eval $(call addlib,apphelloworld))
 
 APPHELLOWORLD_SRCS-y += $(APPHELLOWORLD_BASE)/helloworld.c
 APPHELLOWORLD_SRCS-y += $(APPHELLOWORLD_BASE)/undefined.c
-UK_ALIBS-y += $(APPHELLOWORLD_BASE)/libziggy.a
+UK_ALIBS-y += ${LIB_ZIGGY}
+#UK_ALIBS-y += $(APPHELLOWORLD_BASE)/ziggy/zig-out/lib/libziggy.a

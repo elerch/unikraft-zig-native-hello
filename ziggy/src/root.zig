@@ -9,6 +9,10 @@ export fn add(a: i32, b: i32) i32 {
         const out = std.io.getStdErr().writer();
         out.print("WARNING: Building debug mode will likely crash in Unikraft environment. Use -Doptimize=ReleaseSafe\n", .{}) catch {};
     }
+    if (builtin.mode != .Debug) {
+        const out = std.io.getStdOut().writer();
+        out.print("info: Built with a release build\n", .{}) catch {};
+    }
     const out = std.io.getStdOut().writer();
     out.print("Hello from lib\n", .{}) catch {};
     std.log.err("logging error", .{});
