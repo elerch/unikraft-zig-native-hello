@@ -92,9 +92,17 @@ pub fn build(b: *std.Build) void {
         "-rf",
         ".unikraft",
     });
+
+    // rm -rf in this manner is leaving empty .unikraft/build, which is confusing
+    // let's whack it
+    const remove_empties_cmd = b.addSystemCommand(&[_][]const u8{
+        "find", ".unikraft", "-type", "d", "-empty", "-delete",
+    });
+    remove_empties_cmd.step.dependOn(&distclean_cmd.step);
+
     const distclean_step = b.step("distclean", "Deep clean the unikraft build");
     distclean_step.dependOn(clean_step);
-    distclean_step.dependOn(&distclean_cmd.step);
+    distclean_step.dependOn(&remove_empties_cmd.step);
 }
 
 const LazyPathEnvironmentVariable = struct {
